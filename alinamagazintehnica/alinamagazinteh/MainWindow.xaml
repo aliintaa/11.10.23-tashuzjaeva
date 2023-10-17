@@ -15,9 +15,9 @@
             <ColumnDefinition Width="57*"/>
             <ColumnDefinition Width="343*"/>
         </Grid.ColumnDefinitions>
-        <TextBlock Grid.Column="1" HorizontalAlignment="Center" Width="92">Магазин техники</TextBlock>
+        <TextBlock Grid.Column="1" HorizontalAlignment="Center" Width="141">Магазин техники</TextBlock>
         <Image Grid.Row="0" Grid.Column="0" Source="/pages/teh.jpg" ></Image>
         <StackPanel Margin="0,62,0,0" Grid.RowSpan="2"/>
-
+        <Frame x:Name="frams" Grid.Column="1" Grid.Row="1"></Frame>
     </Grid>
 </Window>

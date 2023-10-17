@@ -1,4 +1,5 @@
-﻿using System;
+﻿using alinamagazinteh.Entities;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -13,5 +14,6 @@ namespace alinamagazinteh
     /// </summary>
     public partial class App : Application
     {
+        public static magazintehnikiEntities1 db = new magazintehnikiEntities1();
     }
 }

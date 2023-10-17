@@ -6,26 +6,36 @@
              xmlns:local="clr-namespace:alinamagazinteh.Entities"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="47*"/>
-            <ColumnDefinition Width="3*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="198*"/>
-            <RowDefinition Height="71*"/>
-            <RowDefinition Height="39*"/>
-            <RowDefinition Height="39*"/>
-            <RowDefinition Height="42*"/>
-            <RowDefinition Height="45*"/>
-        </Grid.RowDefinitions>
-        <TextBlock x:Name="Text" Grid.Column="1"></TextBlock>
-        <TextBlock x:Name="otzv"  Grid.Column="2"></TextBlock>
-        <TextBlock x:Name="price" Grid.Column="3"></TextBlock>
-        <TextBlock x:Name="tovar"  Grid.Column="4"></TextBlock>
-        <Image x:Name="image" Grid.Row="0" Grid.Column="0" Source="/pages/teh.jpg" Grid.ColumnSpan="2" ></Image>
-        <Button HorizontalAlignment="Left" Height="30" Width="250" Background="red" Grid.Row="5" Margin="0,8,0,7">🛒</Button>
-        <Button Height="30" Width="50" Margin="275,8,427,7" Grid.Row="5">❤</Button>
-        <Button Height="30" Width="50" Margin="345,8,357,7" Grid.Row="5 ">📃</Button>
-    </Grid>
+    <Border BorderBrush="#FFFCFCFF"  BorderThickness="4" MaxWidth="400" MaxHeight="400"  Margin="5" MinHeight="400" MinWidth="400" Background="#FFF7F7F7">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="47*"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="198*"/>
+                <RowDefinition Height="71*"/>
+                <RowDefinition Height="39*"/>
+                <RowDefinition Height="39*"/>
+                <RowDefinition Height="42*"/>
+                <RowDefinition Height="45*"/>
+            </Grid.RowDefinitions>
+            <TextBlock x:Name="NameTB" Grid.Row="1"></TextBlock>
+            <StackPanel Orientation="Horizontal" Grid.Row="2">
+                <TextBlock>💥</TextBlock>
+            <TextBlock x:Name="othovTb"></TextBlock>
+            </StackPanel>
+            <StackPanel Grid.Row="3" Orientation="Horizontal">
+                <TextBlock Grid.Row="2" Width="100" x:Name="KolvoOtzv"></TextBlock>
+                <TextBlock x:Name="chenaTB" Width="100"></TextBlock>
+                <TextBlock x:Name="chenaTb" Width="100" Visibility="{Binding CostVisibility}" TextDecorations="Strikethrough"></TextBlock>
+            </StackPanel>
+            <Image x:Name="photo" Grid.Row="0" Grid.Column="0" Source="/pages/teh.jpg" Grid.ColumnSpan="2" ></Image>
+            <Button HorizontalAlignment="Left" Height="27" Width="250" Background="red" Grid.Row="5" Margin="0,8,0,7">🛒</Button>
+            <Button Height="30" Width="50" Margin="200 0 10 0" Grid.Row="5">❤</Button>
+            <Button Height="30" Width="50" Margin="300 0 0 0" Grid.Row="5 ">📃</Button>
+        </Grid>
+    </Border>
 </UserControl>
+
+

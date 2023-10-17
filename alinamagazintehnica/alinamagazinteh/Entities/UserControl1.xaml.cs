@@ -20,16 +20,16 @@ namespace alinamagazinteh.Entities
     /// </summary>
     public partial class UserControl1 : UserControl
     {
-        public UserControl1(Image _img,string textTd, string OtzvTd, string PriceTd, string TovarTd)
+        public UserControl1(Image _photo, string _name, decimal _otc, decimal chena, Visibility chenaVisibility, string _chena, string KolOtzv)
         {
             InitializeComponent();
-
-            image = _img;
-            Text.Text = textTd;
-            otzv.Text = OtzvTd;
-            price.Text = PriceTd;
-            tovar.Text = TovarTd ;
-    }
+            photo = _photo;
+            NameTB.Text = _name;
+            othovTb.Text = _otc.ToString();
+            chenaTb.Text = chena.ToString();
+            chenaTb.Visibility = chenaVisibility;
+            chenaTB.Text = _chena;
+            KolvoOtzv.Text= KolOtzv;
+        }
     }
 }
-
