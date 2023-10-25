@@ -15,9 +15,21 @@
             <ColumnDefinition Width="57*"/>
             <ColumnDefinition Width="343*"/>
         </Grid.ColumnDefinitions>
-        <TextBlock Grid.Column="1" HorizontalAlignment="Center" Width="141">Магазин техники</TextBlock>
+        <TextBlock Grid.Column="1" x:Name="TitleTb" HorizontalAlignment="Center" Width="141">Магазин техники</TextBlock>
         <Image Grid.Row="0" Grid.Column="0" Source="/pages/teh.jpg" ></Image>
         <StackPanel Margin="0,62,0,0" Grid.RowSpan="2"/>
         <Frame x:Name="frams" Grid.Column="1" Grid.Row="1"></Frame>
+
+        <StackPanel Grid.Row="1" VerticalAlignment="Bottom">
+            <Button x:Name="OnAdminBtn" Click="OnAdminBtn_Click_1">
+                <TextBlock>вход<LineBreak/>админа</TextBlock>
+            </Button>
+            <PasswordBox x:Name="PasswordPb" Padding="2" Height="35" Margin="5"></PasswordBox>
+            <Button x:Name="OffAdminBtn" Click="OffAdminBtn_Click_1">
+                <TextBlock>выход<LineBreak/>админа</TextBlock>
+            </Button>
+            <Button x:Name="BackBtn" Click="BackBtn_Click" >Назад</Button>
+        </StackPanel>
+        <Frame x:Name="Frames" Grid.Column="1" Grid.Row="1" NavigationUIVisibility="Hidden" ></Frame>
     </Grid>
 </Window>

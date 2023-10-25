@@ -52,3 +52,4 @@ C:\Users\222126\source\repos\11.10.23-tashuzjaeva\alinamagazintehnica\alinamagaz
 C:\Users\222126\source\repos\11.10.23-tashuzjaeva\alinamagazintehnica\alinamagazinteh\obj\Debug\pages\Catalog.g.cs
 C:\Users\222126\source\repos\11.10.23-tashuzjaeva\alinamagazintehnica\alinamagazinteh\obj\Debug\App.baml
 C:\Users\222126\source\repos\11.10.23-tashuzjaeva\alinamagazintehnica\alinamagazinteh\obj\Debug\pages\Catalog.baml
+C:\Users\222126\source\repos\11.10.23-tashuzjaeva\alinamagazintehnica\alinamagazinteh\obj\Debug\pages\Page1.g.cs

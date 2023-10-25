@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,9 +21,10 @@ namespace alinamagazinteh.Entities
     /// </summary>
     public partial class UserControl1 : UserControl
     {
-        public UserControl1(Image _photo, string _name, decimal _otc, decimal chena, Visibility chenaVisibility, string _chena, string KolOtzv)
+        public UserControl1(Product service)
         {
             InitializeComponent();
+            
             photo = _photo;
             NameTB.Text = _name;
             othovTb.Text = _otc.ToString();
@@ -31,5 +33,53 @@ namespace alinamagazinteh.Entities
             chenaTB.Text = _chena;
             KolvoOtzv.Text= KolOtzv;
         }
+        private BitmapImage GetImageSourse(byte[] byteImage)
+        {
+            BitmapImage bitmapImage = new BitmapImage();
+            try
+            {
+                if (service.MainImage != null)
+                {
+                    MemoryStream byteStream = new MemoryStream(byteImage);
+                    bitmapImage.BeginInit();
+                    bitmapImage.StreamSource = byteStream;
+                    bitmapImage.EndInit();
+                }
+                else
+                {
+                    bitmapImage = new BitmapImage(new Uri(@"\pages\teh.jpg.png", UriKind.Relative));
+                }
+
+
+            }
+
+            catch
+            {
+                MessageBox.Show("Error");
+            }
+            return bitmapImage;
+        }
+
+        private void DeleteBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (service.ClientService != null)
+            {
+                MessageBox.Show("Удаление запрещенно");
+            }
+            else
+            {
+                App.db.Service.Remove(service);
+                App.db.SaveChanges();
+            }
+
+        }
+
+        private void CreateBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+            Navigation.NextPage(new PageComponent(new pages.AddReadactPage(service), "Редактировать"));
+
+        }
     }
+}
 }

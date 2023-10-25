@@ -15,5 +15,6 @@ namespace alinamagazinteh
     public partial class App : Application
     {
         public static magazintehnikiEntities1 db = new magazintehnikiEntities1();
+        public static bool isAdmin = false;
     }
 }

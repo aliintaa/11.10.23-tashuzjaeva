@@ -24,8 +24,38 @@ namespace alinamagazinteh
         public MainWindow()
         {
             InitializeComponent();
+            Navigation.mainWindow = this;
+            Navigation.NextPage(new Navigation.PageComponent(new pages.Page1(), "Список услуг"));
             frams.Navigate(new pages.Catalog());
 
         }
+
+        private void OnAdminBtn_Click_1(object sender, RoutedEventArgs e)
+        {
+            if (PasswordPb.Password == "0000")
+            {
+                App.isAdmin = true;
+                Navigation.NextPage(new Navigation.PageComponent(new pages.Page1(), "Услуги админа"));
+                PasswordPb.Clear();
+                Navigation.ClearHistory();
+            }
+        }
+
+        private void BackBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Navigation.BackPage();
+        }
+
+        private void OffAdminBtn_Click_1(object sender, RoutedEventArgs e)
+        {
+            App.isAdmin = false;
+            Navigation.NextPage(new Navigation.PageComponent(new pages.Page1(), "Список услуг"));
+            Navigation.ClearHistory();
+        }
     }
+    private void OffAdminBtn_Click(object sender, RoutedEventArgs e)
+    {
+        App.isAdmin = false;
+    }
+
 }
