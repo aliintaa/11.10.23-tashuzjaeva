@@ -32,8 +32,13 @@
             </StackPanel>
             <Image x:Name="photo" Grid.Row="0" Grid.Column="0" Source="/pages/teh.jpg" Grid.ColumnSpan="2" ></Image>
             <Button HorizontalAlignment="Left" Height="27" Width="250" Background="red" Grid.Row="5" Margin="0,8,0,7">🛒</Button>
-            <Button Height="30" Click="CreateBtn_Click" Width="50" Margin="200 0 10 0" Grid.Row="5">❤</Button>
+            <Button Height="30"  Width="50" Margin="200 0 10 0" Grid.Row="5" >❤</Button>
             <Button Height="30"  Click="DeleteBtn_Click" Width="50" Margin="300 0 0 0" Grid.Row="5 ">📃</Button>
+
+            <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="4">
+                <Button x:Name="CreateBtn"  Click="CreateBtn_Click">Редактировать</Button>
+                <Button x:Name="DeleteBtn" Click="DeleteBtn_Click">Удалить</Button>
+            </StackPanel>
         </Grid>
     </Border>
 </UserControl>

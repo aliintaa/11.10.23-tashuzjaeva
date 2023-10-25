@@ -29,7 +29,7 @@ namespace alinamagazinteh.pages
 
             foreach (var prods in prod)
             {
-                catalWP.Children.Add(new UserControl1(new Image(), prods.Title.ToString(), Oct(prods.Id), prods.Cost, prods.CostVisibility, prods.CostWithDiscount, prods.VanushieOtzv));
+                catalWP.Children.Add(new UserControl1(prods));
             }
         }
 

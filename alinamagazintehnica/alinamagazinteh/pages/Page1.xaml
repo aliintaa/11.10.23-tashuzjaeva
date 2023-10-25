@@ -15,12 +15,12 @@
             <RowDefinition Height="50*"/>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal">
-            <ComboBox x:Name="SortCb" SelectionChanged="SortCb_SelectionChanged_1" >
+            <ComboBox Margin="0 0 100 0" x:Name="SortCb" SelectionChanged="SortCb_SelectionChanged_1" >
                 <ComboBoxItem>По умолчанию</ComboBoxItem>
                 <ComboBoxItem>По возрастанию</ComboBoxItem>
                 <ComboBoxItem>По убыванию</ComboBoxItem>
             </ComboBox>
-            <ComboBox x:Name="DiscountFilterCb" SelectionChanged="DiscountFilterCb_SelectionChanged">
+            <ComboBox Margin="0 0 100 0" x:Name="DiscountFilterCb" SelectionChanged="DiscountFilterCb_SelectionChanged">
                 <ComboBoxItem>Все</ComboBoxItem>
                 <ComboBoxItem>0% до 5%</ComboBoxItem>
                 <ComboBoxItem>5% до 15%</ComboBoxItem>
@@ -29,13 +29,13 @@
                 <ComboBoxItem>70% до 100%</ComboBoxItem>
             </ComboBox>
             <TextBlock>По названию и описанию</TextBlock>
-            <TextBox x:Name="SearchTb" TextChanged="SearchTb_TextChanged"></TextBox>
+            <TextBox Margin="0 0 100 0" x:Name="SearchTb" TextChanged="SearchTb_TextChanged" Width="182"></TextBox>
         </StackPanel>
         <ScrollViewer HorizontalScrollBarVisibility="Disabled" Margin="0,0,10,0" Grid.Row="1">
             <WrapPanel x:Name="ServiceWp" Grid.Row="1">
             </WrapPanel>
         </ScrollViewer>
-        <Button x:Name="AddBtn" Grid.Row="2" Click="AddBtn_Click">Добавить</Button>
+        <Button x:Name="AddBtn" Grid.Row="2" >Добавить</Button>
         
     </Grid>
 </Page>

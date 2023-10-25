@@ -44,5 +44,30 @@ namespace alinamagazinteh.Entities
             }
 
         }
+
+        public double AVGFeddbk
+        {
+            get
+            {
+                if (Feedback.Count() != 0)
+                {
+                    return Feedback.Average(x => x.Evaluation);
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+        }
+        public decimal TotalCost
+        {
+            get
+            {
+                if (Discount != 0)
+                    return Cost - (Cost * (decimal)Discount / 100);
+                else
+                    return Cost;
+            }
+        }
     }
 }

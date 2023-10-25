@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -14,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
 namespace alinamagazinteh
 {
     /// <summary>
@@ -24,10 +26,20 @@ namespace alinamagazinteh
         public MainWindow()
         {
             InitializeComponent();
-            Navigation.mainWindow = this;
-            Navigation.NextPage(new Navigation.PageComponent(new pages.Page1(), "Список услуг"));
-            frams.Navigate(new pages.Catalog());
+            var path = @"C:\Users\222126\Desktop\";
+            foreach (var item in App.db.Product.ToArray())
+            {
+                var fullPath = path + item.Image.Trim();
+                var imageByte = File.ReadAllBytes(fullPath);
+                item.MainImage = imageByte;
 
+
+                App.db.SaveChanges();
+                Entities.PartialClass.Navigation.mainWindow = this;
+                Entities.PartialClass.Navigation.NextPage(new Entities.PartialClass.Navigation.PageComponent(new pages.Page1(), "Список услуг"));
+                frams.Navigate(new pages.Catalog());
+
+            }
         }
 
         private void OnAdminBtn_Click_1(object sender, RoutedEventArgs e)
@@ -35,27 +47,24 @@ namespace alinamagazinteh
             if (PasswordPb.Password == "0000")
             {
                 App.isAdmin = true;
-                Navigation.NextPage(new Navigation.PageComponent(new pages.Page1(), "Услуги админа"));
+                Entities.PartialClass.Navigation.NextPage(new Entities.PartialClass.Navigation.PageComponent(new pages.Page1(), "Услуги админа"));
                 PasswordPb.Clear();
-                Navigation.ClearHistory();
+                Entities.PartialClass.Navigation.ClearHistory();
             }
         }
 
         private void BackBtn_Click(object sender, RoutedEventArgs e)
         {
-            Navigation.BackPage();
+            Entities.PartialClass.Navigation.BackPage();
         }
 
         private void OffAdminBtn_Click_1(object sender, RoutedEventArgs e)
         {
             App.isAdmin = false;
-            Navigation.NextPage(new Navigation.PageComponent(new pages.Page1(), "Список услуг"));
-            Navigation.ClearHistory();
+            Entities.PartialClass.Navigation.NextPage(new Entities.PartialClass.Navigation.PageComponent(new pages.Page1(), "Список услуг"));
+            Entities.PartialClass.Navigation.ClearHistory();
         }
     }
-    private void OffAdminBtn_Click(object sender, RoutedEventArgs e)
-    {
-        App.isAdmin = false;
-    }
+
 
 }

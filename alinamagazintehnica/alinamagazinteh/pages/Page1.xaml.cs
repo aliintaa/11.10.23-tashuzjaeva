@@ -1,4 +1,5 @@
-﻿using System;
+﻿using alinamagazinteh.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -31,7 +32,7 @@ namespace alinamagazinteh.pages
         }
         private void Refresh()
         {
-            IEnumerable<Service> services = App.db.Service;
+            IEnumerable<Product> services = App.db.Product;
             if (SortCb.SelectedIndex != 0)
             {
                 if (SortCb.SelectedIndex == 1)
@@ -71,7 +72,7 @@ namespace alinamagazinteh.pages
             ServiceWp.Children.Clear();
             foreach (var service in services)
             {
-                ServiceWp.Children.Add(new ServaseUserControl(service));
+                ServiceWp.Children.Add(new UserControl1(service));
             }
         }
 
@@ -95,12 +96,14 @@ namespace alinamagazinteh.pages
             Refresh();
         }
 
-        private void AddBtn_Click(object sender, RoutedEventArgs e)
-        {
+    
 
-            Navigation.NextPage(new PageComponent(new mypage.AddReadactPage(new Service()), "Добавить услугу"));
+        //private void AddBtn_Click(object sender, RoutedEventArgs e)
+        //{
 
-        }
+        //    Entities.PartialClass.Navigation.NextPage(new PageContent(new pages.Page1(new Product()), "Добавить услугу"));
+
+        //}
     }
 }
     

@@ -11,7 +11,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
+using System.Windows.Navigation;            
 using System.Windows.Shapes;
 
 namespace alinamagazinteh.Entities
@@ -21,17 +21,18 @@ namespace alinamagazinteh.Entities
     /// </summary>
     public partial class UserControl1 : UserControl
     {
-        public UserControl1(Product service)
+        private Product service;
+        public UserControl1(Product _service)
         {
             InitializeComponent();
-            
-            photo = _photo;
-            NameTB.Text = _name;
-            othovTb.Text = _otc.ToString();
-            chenaTb.Text = chena.ToString();
-            chenaTb.Visibility = chenaVisibility;
-            chenaTB.Text = _chena;
-            KolvoOtzv.Text= KolOtzv;
+            service = _service;
+            photo.Source = GetImageSourse(service.MainImage);
+            NameTB.Text = service.Title;
+            othovTb.Text = service.AVGFeddbk.ToString();
+            chenaTb.Text = service.Cost.ToString();
+            chenaTb.Visibility = service.CostVisibility;
+            chenaTB.Text = service.CostWithDiscount;
+            KolvoOtzv.Text = service.VanushieOtzv;
         }
         private BitmapImage GetImageSourse(byte[] byteImage)
         {
@@ -47,9 +48,8 @@ namespace alinamagazinteh.Entities
                 }
                 else
                 {
-                    bitmapImage = new BitmapImage(new Uri(@"\pages\teh.jpg.png", UriKind.Relative));
+                    bitmapImage = new BitmapImage(new Uri(@"\pages\teh.jpg", UriKind.Relative));
                 }
-
 
             }
 
@@ -62,24 +62,30 @@ namespace alinamagazinteh.Entities
 
         private void DeleteBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (service.ClientService != null)
+            if (service != null)
             {
                 MessageBox.Show("Удаление запрещенно");
             }
             else
             {
-                App.db.Service.Remove(service);
+                App.db.Product.Remove(service);
                 App.db.SaveChanges();
-            }
+                //    }
 
+                //}
+
+                //private void CreateBtn_Click(object sender, RoutedEventArgs e)
+                //{
+
+                //     Entities.PartialClass.Navigation.NextPage(new PageComponent(new pages.AddReadactPage(service), "Редактировать"));
+
+            }
         }
 
         private void CreateBtn_Click(object sender, RoutedEventArgs e)
         {
-
-            Navigation.NextPage(new PageComponent(new pages.AddReadactPage(service), "Редактировать"));
-
+            MessageBox.Show("Red");
         }
     }
 }
-}
+    
