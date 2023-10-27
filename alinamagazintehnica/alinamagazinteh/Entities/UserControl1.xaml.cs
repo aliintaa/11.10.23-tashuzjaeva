@@ -1,4 +1,5 @@
-﻿using System;
+﻿using alinamagazinteh.Entities.PartialClass;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -13,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;            
 using System.Windows.Shapes;
+using static alinamagazinteh.Entities.PartialClass.Navigation;
 
 namespace alinamagazinteh.Entities
 {
@@ -25,6 +27,16 @@ namespace alinamagazinteh.Entities
         public UserControl1(Product _service)
         {
             InitializeComponent();
+             if(App.isAdmin == false)
+            {
+                DeleteBtn.Visibility = Visibility.Collapsed;
+                CreateBtn.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                CreateBtn.Visibility = Visibility.Visible;
+                DeleteBtn.Visibility = Visibility.Visible;
+            }
             service = _service;
             photo.Source = GetImageSourse(service.MainImage);
             NameTB.Text = service.Title;
@@ -70,21 +82,14 @@ namespace alinamagazinteh.Entities
             {
                 App.db.Product.Remove(service);
                 App.db.SaveChanges();
-                //    }
-
-                //}
-
-                //private void CreateBtn_Click(object sender, RoutedEventArgs e)
-                //{
-
-                //     Entities.PartialClass.Navigation.NextPage(new PageComponent(new pages.AddReadactPage(service), "Редактировать"));
-
             }
+
         }
+
 
         private void CreateBtn_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Red");
+            Navigation.NextPage(new PageComponent(new pages.AddReadact(service), "Редактировать"));
         }
     }
 }

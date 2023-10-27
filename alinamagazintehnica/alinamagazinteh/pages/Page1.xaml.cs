@@ -96,7 +96,7 @@ namespace alinamagazinteh.pages
             Refresh();
         }
 
-    
+
 
         //private void AddBtn_Click(object sender, RoutedEventArgs e)
         //{
