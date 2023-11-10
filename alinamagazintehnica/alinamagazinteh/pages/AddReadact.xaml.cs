@@ -51,7 +51,9 @@ namespace alinamagazinteh.pages
      
 
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
-        { if (service.Id == 0)
+        {
+            StringBuilder errors = new StringBuilder(); 
+            if (service.Id == 0)
             {
                 App.db.Product.Add(service);
             }
@@ -59,6 +61,31 @@ namespace alinamagazinteh.pages
             App.db.SaveChanges();
             alinamagazinteh.Entities.PartialClass.Navigation.NextPage(new Entities.PartialClass.Navigation.PageComponent(new Catalog(), "Список админов"));
 
+        }
+        private void CostTb_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!(char.IsDigit(e.Text[0])))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void AddImageBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+            OpenFileDialog openFile = new OpenFileDialog()
+            {
+                Filter = "*.png|*.png|*.jpg|*.jpg|*.jpeg|*.jpeg"
+            };
+            if (openFile.ShowDialog().GetValueOrDefault())
+                App.db.Image.Add(new ServicePhoto
+                {
+                    ServiceID = service.ID,
+                    PhotoByte = File.ReadAllBytes(openFile.FileName)
+
+                });
+            RefreshPhoto();
+            App.db.SaveChanges();
         }
     }
 }

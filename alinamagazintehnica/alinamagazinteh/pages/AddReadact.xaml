@@ -45,13 +45,20 @@
                 <TextBox Text="{Binding Discount}" Width="100" x:Name="SaleTb"></TextBox>
                 </StackPanel>
             </StackPanel>
-            <StackPanel Orientation="Vertical" Grid.Column="0">
-                <Border BorderBrush="Blue" BorderThickness="1">
-                    <Image x:Name="Image" Width="200" Height="190" Source="{Binding MainImage}"></Image>
-                </Border>
-                <Button x:Name="EditBtn" Click="EditBtn_Click" Content="Изменить изображение" />
+        <StackPanel Orientation="Vertical" Grid.Column="0">
+            <Border BorderBrush="Blue" BorderThickness="1">
+                <Image x:Name="Image" Width="200" Height="190" Source="{Binding MainImage}"></Image>
+            </Border>
+            <Button x:Name="EditBtn" Click="EditBtn_Click" Content="Изменить изображение"></Button>
+            <StackPanel Grid.Row="1">
+                <ScrollViewer Margin="2" HorizontalAlignment="Center" HorizontalScrollBarVisibility="Disabled" Height="100" Width="380">
+                <WrapPanel  Width="300" Height="100" x:Name="PhotoWp"></WrapPanel>
+            </ScrollViewer>
+                <Button x:Name="AddImageBtn" Click="AddImageBtn_Click">Добавить изображение</Button>
             </StackPanel>
-            <Button x:Name="SaveBtn" Click="SaveBtn_Click"  Grid.Row="1" Grid.RowSpan="2">Сохранить</Button>
+            
+        </StackPanel>
+        <Button x:Name="SaveBtn" Click="SaveBtn_Click"  Grid.Row="2" Grid.ColumnSpan="2">Сохранить</Button>
         </Grid>
     
 </Page>
