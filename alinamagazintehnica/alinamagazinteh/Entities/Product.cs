@@ -18,6 +18,7 @@ namespace alinamagazinteh.Entities
         public Product()
         {
             this.Feedback = new HashSet<Feedback>();
+            this.ProductPhoto = new HashSet<ProductPhoto>();
         }
     
         public int Id { get; set; }
@@ -30,5 +31,7 @@ namespace alinamagazinteh.Entities
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Feedback> Feedback { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ProductPhoto> ProductPhoto { get; set; }
     }
 }

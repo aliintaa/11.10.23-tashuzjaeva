@@ -78,14 +78,27 @@ namespace alinamagazinteh.pages
                 Filter = "*.png|*.png|*.jpg|*.jpg|*.jpeg|*.jpeg"
             };
             if (openFile.ShowDialog().GetValueOrDefault())
-                App.db.Image.Add(new ServicePhoto
+                App.db.ProductPhoto.Add(new ProductPhoto
                 {
-                    ServiceID = service.ID,
+                    Id_p = service.Id,
                     PhotoByte = File.ReadAllBytes(openFile.FileName)
 
                 });
             RefreshPhoto();
             App.db.SaveChanges();
         }
-    }
+        public void RefreshPhoto()
+        {
+            PhotoWp.Children.Clear();
+            foreach (var photo in App.db.ProductPhoto)
+            {
+                PhotoWp.Children.Add(new PhotoUserControl(photo));
+            }
+            BitmapImage bitmapImage = new BitmapImage();
+            MemoryStream byteStream = new MemoryStream(service.MainImage);
+            bitmapImage.BeginInit();
+            bitmapImage.StreamSource = byteStream;
+            bitmapImage.EndInit();
+            Image.Source = bitmapImage;
+        }
 }
