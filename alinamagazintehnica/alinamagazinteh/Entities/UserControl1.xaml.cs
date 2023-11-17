@@ -23,11 +23,12 @@ namespace alinamagazinteh.Entities
     /// </summary>
     public partial class UserControl1 : UserControl
     {
-        private Product service;
-        public UserControl1(Product _service)
+        public Product product;
+
+        public UserControl1(Product _product)
         {
             InitializeComponent();
-            service = _service;
+            product = _product;
              if(App.isAdmin == false)
             {
                 DeleteBtn.Visibility = Visibility.Collapsed;
@@ -39,20 +40,20 @@ namespace alinamagazinteh.Entities
                 DeleteBtn.Visibility = Visibility.Visible;
             }
             
-            photo.Source = GetImageSourse(service.MainImage);
-            NameTB.Text = service.Title;
-            othovTb.Text = service.AVGFeddbk.ToString();
-            chenaTb.Text = service.Cost.ToString();
-            chenaTb.Visibility = service.CostVisibility;
-            chenaTB.Text = service.CostWithDiscount;
-            KolvoOtzv.Text = service.VanushieOtzv;
+            photo.Source = GetImageSourse(product.MainImage);
+            NameTB.Text = product.Title;
+            othovTb.Text = product.AVGFeddbk.ToString();
+            chenaTb.Text = product.Cost.ToString();
+            chenaTb.Visibility = product.CostVisibility;
+            chenaTB.Text = product.CostWithDiscount;
+            KolvoOtzv.Text = product.VanushieOtzv;
         }
         private BitmapImage GetImageSourse(byte[] byteImage)
         {
             BitmapImage bitmapImage = new BitmapImage();
             try
             {
-                if (service.MainImage != null)
+                if (product.MainImage != null)
                 {
                     MemoryStream byteStream = new MemoryStream(byteImage);
                     bitmapImage.BeginInit();
@@ -75,13 +76,13 @@ namespace alinamagazinteh.Entities
 
         private void DeleteBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (service != null)
+            if (product != null)
             {
                 MessageBox.Show("Удаление запрещенно");
             }
             else
             {
-                App.db.Product.Remove(service);
+                App.db.Product.Remove(product);
                 App.db.SaveChanges();
             }
 
@@ -90,7 +91,7 @@ namespace alinamagazinteh.Entities
 
         private void CreateBtn_Click(object sender, RoutedEventArgs e)
         {
-            Navigation.NextPage(new PageComponent(new pages.AddReadact(service), "Редактировать"));
+            Navigation.NextPage(new PageComponent(new pages.AddReadact(product), "Редактировать"));
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -99,10 +100,13 @@ namespace alinamagazinteh.Entities
             { 
                 if(productZakazUc.product == product)
                 {
-                    productZakazUc.KolvoTb.Text
+                    productZakazUc.KolvoTb.Text = (productZakazUc.Kolvo + 1).ToString();
+                    return;
                 }
 
             }
+            App.KorzinaWp.Children.Add(new ProductZakazUc(product));
+            App.ProdListPage.CalculateItog();
                     
         }
     }

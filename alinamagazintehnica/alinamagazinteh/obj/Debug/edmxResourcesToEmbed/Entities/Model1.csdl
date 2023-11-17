@@ -24,6 +24,7 @@
     <Property Name="Image" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Feedback" Relationship="Self.FK_Feedback_Product" FromRole="Product" ToRole="Feedback" />
     <NavigationProperty Name="ProductPhoto" Relationship="Self.FK_ProductPhoto_Product" FromRole="Product" ToRole="ProductPhoto" />
+    <NavigationProperty Name="Product_Zakaz" Relationship="magazintehnikiModel.FK_Product_Zakaz_Product" FromRole="Product" ToRole="Product_Zakaz" />
   </EntityType>
   <EntityType Name="ProductPhoto">
     <Key>
@@ -111,6 +112,16 @@
       <Parameter Name="new_diagramname" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="sp_upgraddiagrams" />
+    <EntitySet Name="Product_Zakaz" EntityType="magazintehnikiModel.Product_Zakaz" />
+    <EntitySet Name="Zakaz_zakaz" EntityType="magazintehnikiModel.Zakaz_zakaz" />
+    <AssociationSet Name="FK_Product_Zakaz_Product" Association="magazintehnikiModel.FK_Product_Zakaz_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="Product_Zakaz" EntitySet="Product_Zakaz" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_Zakaz_Zakaz_zakaz" Association="magazintehnikiModel.FK_Product_Zakaz_Zakaz_zakaz">
+      <End Role="Zakaz_zakaz" EntitySet="Zakaz_zakaz" />
+      <End Role="Product_Zakaz" EntitySet="Product_Zakaz" />
+    </AssociationSet>
   </EntityContainer>
   <ComplexType Name="sp_helpdiagramdefinition_Result">
     <Property Type="Int32" Name="version" Nullable="true" />
@@ -123,4 +134,48 @@
     <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
     <Property Type="Int32" Name="OwnerID" Nullable="false" />
   </ComplexType>
+  <EntityType Name="Product_Zakaz">
+    <Key>
+      <PropertyRef Name="Id_zakaz" />
+    </Key>
+    <Property Name="Id_zakaz" Type="Int32" Nullable="false" />
+    <Property Name="ProductId" Type="Int32" />
+    <Property Name="ZakazId" Type="Int32" />
+    <Property Name="Kolvo_zakaz" Type="Int32" />
+    <NavigationProperty Name="Product" Relationship="magazintehnikiModel.FK_Product_Zakaz_Product" FromRole="Product_Zakaz" ToRole="Product" />
+    <NavigationProperty Name="Zakaz_zakaz" Relationship="magazintehnikiModel.FK_Product_Zakaz_Zakaz_zakaz" FromRole="Product_Zakaz" ToRole="Zakaz_zakaz" />
+  </EntityType>
+  <EntityType Name="Zakaz_zakaz">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="ZakazDate" Type="DateTime" Precision="0" />
+    <Property Name="Status" Type="Int32" />
+    <NavigationProperty Name="Product_Zakaz" Relationship="magazintehnikiModel.FK_Product_Zakaz_Zakaz_zakaz" FromRole="Zakaz_zakaz" ToRole="Product_Zakaz" />
+  </EntityType>
+  <Association Name="FK_Product_Zakaz_Product">
+    <End Type="magazintehnikiModel.Product" Role="Product" Multiplicity="0..1" />
+    <End Type="magazintehnikiModel.Product_Zakaz" Role="Product_Zakaz" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Product_Zakaz">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_Zakaz_Zakaz_zakaz">
+    <End Type="magazintehnikiModel.Zakaz_zakaz" Role="Zakaz_zakaz" Multiplicity="0..1" />
+    <End Type="magazintehnikiModel.Product_Zakaz" Role="Product_Zakaz" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Zakaz_zakaz">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Product_Zakaz">
+        <PropertyRef Name="ZakazId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

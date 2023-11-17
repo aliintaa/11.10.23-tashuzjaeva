@@ -69,5 +69,6 @@ namespace alinamagazinteh.Entities
                     return Cost;
             }
         }
+       
     }
 }

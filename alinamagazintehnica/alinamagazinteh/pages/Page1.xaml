@@ -31,10 +31,19 @@
             <TextBlock>По названию и описанию</TextBlock>
             <TextBox Margin="0 0 100 0" x:Name="SearchTb" TextChanged="SearchTb_TextChanged" Width="182"></TextBox>
         </StackPanel>
-        <ScrollViewer HorizontalScrollBarVisibility="Disabled" Margin="0,0,10,0" Grid.Row="1">
-            <WrapPanel x:Name="ServiceWp" Grid.Row="1">
+        <StackPanel Orientation="Horizontal" Grid.Row="1">
+        <ScrollViewer HorizontalScrollBarVisibility="Disabled" Margin="0,0,10,0">
+            <WrapPanel x:Name="ServiceWp" Orientation="Vertical">
             </WrapPanel>
         </ScrollViewer>
+            <StackPanel>
+            <ScrollViewer HorizontalScrollBarVisibility="Disabled">
+                <WrapPanel Orientation="Vertical" x:Name="KorzinaWp"></WrapPanel>
+            </ScrollViewer>
+            <TextBlock Margin="5 15 5 0" x:Name="ItogTb">Итог:</TextBlock>
+            <Button Margin="5 10 5 0" x:Name="ZakazBtn" Click="ZakazBtn_Click">Заказать</Button>
+            </StackPanel>
+        </StackPanel>
         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
         <Button x:Name="AddBtn" MinWidth="150" MaxWidth="155" >Добавить</Button>
         <Button MinWidth="150" MaxWidth="155" >Записи клиентов</Button>

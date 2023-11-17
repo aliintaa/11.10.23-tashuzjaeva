@@ -19,11 +19,15 @@ namespace alinamagazinteh.pages
     /// <summary>
     /// Логика взаимодействия для Page1.xaml
     /// </summary>
+     
     public partial class Page1 : Page
-    {
+    { 
+        public Zakaz_zakaz zakaz;
         public Page1()
         {
             InitializeComponent();
+            App.ProdListPage = this;
+            App.KorzinaWp = KorzinaWp;
             if (App.isAdmin == false)
             {
                 AddBtn.Visibility = Visibility.Hidden;
@@ -104,6 +108,59 @@ namespace alinamagazinteh.pages
         //    Entities.PartialClass.Navigation.NextPage(new PageContent(new pages.Page1(new Product()), "Добавить услугу"));
 
         //}
+        public void CalculateItog()
+        {
+            double itog = 0;
+            foreach (ProductZakazUc ProdZakUC in KorzinaWp.Children)
+            {
+                itog += ProdZakUC.Summ;
+            }
+            ItogTb.Text = $"Итог: {itog}";
+        }
+        private void ClearZakaz()
+        {
+            zakaz = new Zakaz_zakaz();
+            KorzinaWp.Children.Clear();
+        }
+        private bool CheckZakaz()
+        {
+            if (KorzinaWp.Children.Count == 0)
+            {
+                MessageBox.Show("Выберите хотя бы 1 товар!");
+                return false;
+            }
+
+            foreach (ProductZakazUc ProdZakUC in KorzinaWp.Children)
+            {
+                if (ProdZakUC.Kolvo == 0)
+                {
+                    MessageBox.Show("Введите количество для всех товаров!");
+                    return false;
+                }
+            }
+            return true;
+        }
+        private void ZakazBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (!CheckZakaz())
+                return;
+
+            zakaz.ZakazDate = DateTime.Now;
+            zakaz = App.db.Zakaz_zakaz.Add(zakaz);
+
+            Product_Zakaz prodZak;
+            foreach (ProductZakazUc ProdZakUC in KorzinaWp.Children)
+            {
+                prodZak = new Product_Zakaz();
+                prodZak.ZakazId = zakaz.Id;
+                prodZak.ProductId = ProdZakUC.product.Id;
+                prodZak.Kolvo_zakaz = ProdZakUC.Kolvo;
+                App.db.Product_Zakaz.Add(prodZak);
+            }
+            App.db.SaveChanges();
+            MessageBox.Show("Заказ успешно оформлен!");
+            ClearZakaz();
+        }
     }
 }
     

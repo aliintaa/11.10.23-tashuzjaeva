@@ -7,6 +7,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using alinamagazinteh.Entities.PartialClass;
+using System.Windows.Controls;
+using alinamagazinteh.pages;
 
 namespace alinamagazinteh
 {
@@ -19,5 +21,7 @@ namespace alinamagazinteh
         public static bool isAdmin = false;
         public static MainWindow mainWindow;
         public static pages.AddReadact servicePage;
+        public static WrapPanel KorzinaWp;
+        public static Page1 ProdListPage;
     }
 }

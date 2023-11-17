@@ -31,6 +31,8 @@ namespace alinamagazinteh.Entities
         public virtual DbSet<Product> Product { get; set; }
         public virtual DbSet<ProductPhoto> ProductPhoto { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<Product_Zakaz> Product_Zakaz { get; set; }
+        public virtual DbSet<Zakaz_zakaz> Zakaz_zakaz { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {

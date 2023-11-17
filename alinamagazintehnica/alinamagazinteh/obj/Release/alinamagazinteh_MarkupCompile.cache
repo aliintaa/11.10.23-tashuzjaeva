@@ -4,11 +4,11 @@
 winexe
 C#
 .cs
-C:\Users\222126\Source\Repos\11.10.23-tashuzjaeva\alinamagazintehnica\alinamagazinteh\obj\Debug\
+C:\Users\222126\Source\Repos\11.10.23-tashuzjaeva\alinamagazintehnica\alinamagazinteh\obj\Release\
 alinamagazinteh
 none
 false
-DEBUG;TRACE
+TRACE
 C:\Users\222126\Source\Repos\11.10.23-tashuzjaeva\alinamagazintehnica\alinamagazinteh\App.xaml
 71610450239
 2-1189279499
@@ -16,5 +16,5 @@ C:\Users\222126\Source\Repos\11.10.23-tashuzjaeva\alinamagazintehnica\alinamagaz
 18477216969
 Entities\PhotoUserControl.xaml;Entities\ProductZakazUc.xaml;Entities\UserControl1.xaml;MainWindow.xaml;pages\AddReadact.xaml;pages\Catalog.xaml;pages\Page1.xaml;
 
-False
+True
 

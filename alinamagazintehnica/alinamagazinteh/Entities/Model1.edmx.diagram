@@ -11,6 +11,10 @@
         <EntityTypeShape EntityType="magazintehnikiModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
         <AssociationConnector Association="magazintehnikiModel.FK_Feedback_Product" ManuallyRouted="false" />
         <AssociationConnector Association="magazintehnikiModel.FK_ProductPhoto_Product" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="magazintehnikiModel.Product_Zakaz" Width="1.5" PointX="6" PointY="4.375" />
+        <EntityTypeShape EntityType="magazintehnikiModel.Zakaz_zakaz" Width="1.5" PointX="3.75" PointY="6.625" />
+        <AssociationConnector Association="magazintehnikiModel.FK_Product_Zakaz_Product" />
+        <AssociationConnector Association="magazintehnikiModel.FK_Product_Zakaz_Zakaz_zakaz" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
