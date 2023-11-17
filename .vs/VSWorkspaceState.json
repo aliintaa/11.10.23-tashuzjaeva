@@ -1,6 +1,11 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\alinamagazintehnica",
+    "\\alinamagazintehnica\\alinamagazinteh",
+    "\\alinamagazintehnica\\alinamagazinteh\\Entities",
+    "\\alinamagazintehnica\\alinamagazinteh\\Entities\\PartialClass"
   ],
+  "SelectedNode": "\\alinamagazintehnica\\alinamagazinteh\\Entities\\PartialClass\\PhotoUserControl.xaml.cs",
   "PreviewInSolutionExplorer": false
 }

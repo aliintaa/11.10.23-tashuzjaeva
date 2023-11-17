@@ -16,6 +16,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
 using System.Data.Entity.Migrations;
+using alinamagazinteh.Entities.PartialClass;
 
 namespace alinamagazinteh.pages
 {
@@ -30,10 +31,12 @@ namespace alinamagazinteh.pages
             InitializeComponent();
             service = _service;
             this.DataContext = service;
+            App.servicePage = this;
+            RefreshPhoto();
         }
 
 
-     
+
 
         private void EditBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -48,11 +51,11 @@ namespace alinamagazinteh.pages
             }
         }
 
-     
+
 
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
-            StringBuilder errors = new StringBuilder(); 
+            StringBuilder errors = new StringBuilder();
             if (service.Id == 0)
             {
                 App.db.Product.Add(service);
@@ -85,12 +88,14 @@ namespace alinamagazinteh.pages
 
                 });
             RefreshPhoto();
+            InitializeComponent();
+
             App.db.SaveChanges();
         }
         public void RefreshPhoto()
         {
             PhotoWp.Children.Clear();
-            foreach (var photo in App.db.ProductPhoto)
+            foreach (var photo in App.db.ProductPhoto.Where(x => x.Id_p == service.Id))
             {
                 PhotoWp.Children.Add(new PhotoUserControl(photo));
             }
@@ -101,4 +106,5 @@ namespace alinamagazinteh.pages
             bitmapImage.EndInit();
             Image.Source = bitmapImage;
         }
+    }
 }

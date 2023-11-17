@@ -31,7 +31,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="PhotoByte" Type="varbinary(max)" />
           <Property Name="Id_p" Type="int" />
         </EntityType>
@@ -141,7 +141,16 @@
           <Property Name="MainImage" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="Image" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Feedback" Relationship="Self.FK_Feedback_Product" FromRole="Product" ToRole="Feedback" />
-          <NavigationProperty Name="ProductPhoto" Relationship="magazintehnikiModel.FK_ProductPhoto_Product" FromRole="Product" ToRole="ProductPhoto" />
+          <NavigationProperty Name="ProductPhoto" Relationship="Self.FK_ProductPhoto_Product" FromRole="Product" ToRole="ProductPhoto" />
+        </EntityType>
+        <EntityType Name="ProductPhoto">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="PhotoByte" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Id_p" Type="Int32" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_ProductPhoto_Product" FromRole="ProductPhoto" ToRole="Product" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -165,13 +174,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="magazintehnikiEntities1" annotation:LazyLoadingEnabled="true">
+        <Association Name="FK_ProductPhoto_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="ProductPhoto" Type="Self.ProductPhoto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductPhoto">
+              <PropertyRef Name="Id_p" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="magazintehnikiEntities2" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Feedback" EntityType="Self.Feedback" />
           <EntitySet Name="Product" EntityType="Self.Product" />
+          <EntitySet Name="ProductPhoto" EntityType="Self.ProductPhoto" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <AssociationSet Name="FK_Feedback_Product" Association="Self.FK_Feedback_Product">
             <End Role="Product" EntitySet="Product" />
             <End Role="Feedback" EntitySet="Feedback" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductPhoto_Product" Association="Self.FK_ProductPhoto_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="ProductPhoto" EntitySet="ProductPhoto" />
           </AssociationSet>
           <FunctionImport Name="sp_alterdiagram">
             <Parameter Name="diagramname" Mode="In" Type="String" />
@@ -203,11 +229,6 @@
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
-          <EntitySet Name="ProductPhoto" EntityType="magazintehnikiModel.ProductPhoto" />
-          <AssociationSet Name="FK_ProductPhoto_Product" Association="magazintehnikiModel.FK_ProductPhoto_Product">
-            <End Role="Product" EntitySet="Product" />
-            <End Role="ProductPhoto" EntitySet="ProductPhoto" />
-          </AssociationSet>
         </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -220,33 +241,12 @@
           <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
           <Property Type="Int32" Name="OwnerID" Nullable="false" />
         </ComplexType>
-        <EntityType Name="ProductPhoto">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="PhotoByte" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="Id_p" Type="Int32" />
-          <NavigationProperty Name="Product" Relationship="magazintehnikiModel.FK_ProductPhoto_Product" FromRole="ProductPhoto" ToRole="Product" />
-        </EntityType>
-        <Association Name="FK_ProductPhoto_Product">
-          <End Type="magazintehnikiModel.Product" Role="Product" Multiplicity="0..1" />
-          <End Type="magazintehnikiModel.ProductPhoto" Role="ProductPhoto" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Product">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="ProductPhoto">
-              <PropertyRef Name="Id_p" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище magazintehnikiModelContainer" CdmEntityContainer="magazintehnikiEntities1">
+        <EntityContainerMapping StorageEntityContainer="Хранилище magazintehnikiModelContainer" CdmEntityContainer="magazintehnikiEntities2">
           <EntitySetMapping Name="Feedback">
             <EntityTypeMapping TypeName="magazintehnikiModel.Feedback">
               <MappingFragment StoreEntitySet="Feedback">
@@ -268,6 +268,15 @@
                 <ScalarProperty Name="Discount" ColumnName="Discount" />
                 <ScalarProperty Name="MainImage" ColumnName="MainImage" />
                 <ScalarProperty Name="Image" ColumnName="Image" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductPhoto">
+            <EntityTypeMapping TypeName="magazintehnikiModel.ProductPhoto">
+              <MappingFragment StoreEntitySet="ProductPhoto">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PhotoByte" ColumnName="PhotoByte" />
+                <ScalarProperty Name="Id_p" ColumnName="Id_p" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -306,15 +315,6 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="Хранилище magazintehnikiModel.sp_renamediagram" />
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="Хранилище magazintehnikiModel.sp_upgraddiagrams" />
-          <EntitySetMapping Name="ProductPhoto">
-            <EntityTypeMapping TypeName="magazintehnikiModel.ProductPhoto">
-              <MappingFragment StoreEntitySet="ProductPhoto">
-                <ScalarProperty Name="Id_p" ColumnName="Id_p" />
-                <ScalarProperty Name="PhotoByte" ColumnName="PhotoByte" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

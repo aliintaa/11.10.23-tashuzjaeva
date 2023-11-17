@@ -25,21 +25,21 @@ namespace alinamagazinteh.Entities.PartialClass
         {
             InitializeComponent();
             produtPhoto = _produtPhoto;
-            this.DataContext = productPhoto;
+            this.DataContext = produtPhoto;
         }
 
         private void MainBtn_Click(object sender, RoutedEventArgs e)
         {
-            var selPhoto = productPhoto.PhotoByte;
-            productPhoto.PhotoByte = productPhoto.Service.MainImage;
-            productPhoto.Service.MainImage = selPhoto;
+            var selPhoto = produtPhoto.PhotoByte;
+            produtPhoto.PhotoByte = produtPhoto.Product.MainImage;
+            produtPhoto.Product.MainImage = selPhoto;
             App.servicePage.RefreshPhoto();
             App.db.SaveChanges();
         }
 
         private void DeleteBtn_Click(object sender, RoutedEventArgs e)
         {
-            App.db.ProductPhoto.Remove(productPhoto);
+            App.db.ProductPhoto.Remove(produtPhoto);
             App.db.SaveChanges();
             App.servicePage.RefreshPhoto();
         }

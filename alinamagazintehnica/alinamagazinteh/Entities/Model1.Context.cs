@@ -15,10 +15,10 @@ namespace alinamagazinteh.Entities
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class magazintehnikiEntities1 : DbContext
+    public partial class magazintehnikiEntities2 : DbContext
     {
-        public magazintehnikiEntities1()
-            : base("name=magazintehnikiEntities1")
+        public magazintehnikiEntities2()
+            : base("name=magazintehnikiEntities2")
         {
         }
     
@@ -29,8 +29,8 @@ namespace alinamagazinteh.Entities
     
         public virtual DbSet<Feedback> Feedback { get; set; }
         public virtual DbSet<Product> Product { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<ProductPhoto> ProductPhoto { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {

@@ -51,8 +51,8 @@
             </Border>
             <Button x:Name="EditBtn" Click="EditBtn_Click" Content="Изменить изображение"></Button>
             <StackPanel Grid.Row="1">
-                <ScrollViewer Margin="2" HorizontalAlignment="Center" HorizontalScrollBarVisibility="Disabled" Height="100" Width="380">
-                <WrapPanel  Width="300" Height="100" x:Name="PhotoWp"></WrapPanel>
+                <ScrollViewer Margin="2" HorizontalAlignment="Center" HorizontalScrollBarVisibility="Disabled" >
+                <WrapPanel  Width="300" MinHeight="100" x:Name="PhotoWp"></WrapPanel>
             </ScrollViewer>
                 <Button x:Name="AddImageBtn" Click="AddImageBtn_Click">Добавить изображение</Button>
             </StackPanel>

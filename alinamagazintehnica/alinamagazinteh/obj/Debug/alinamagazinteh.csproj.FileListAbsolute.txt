@@ -56,3 +56,5 @@ C:\Users\222126\source\repos\11.10.23-tashuzjaeva\alinamagazintehnica\alinamagaz
 C:\Users\222126\source\repos\11.10.23-tashuzjaeva\alinamagazintehnica\alinamagazinteh\obj\Debug\pages\Page1.baml
 C:\Users\222126\source\repos\11.10.23-tashuzjaeva\alinamagazintehnica\alinamagazinteh\obj\Debug\pages\AddReadact.g.cs
 C:\Users\222126\source\repos\11.10.23-tashuzjaeva\alinamagazintehnica\alinamagazinteh\obj\Debug\pages\AddReadact.baml
+C:\Users\222126\Source\Repos\11.10.23-tashuzjaeva\alinamagazintehnica\alinamagazinteh\obj\Debug\Entities\PhotoUserControl.g.cs
+C:\Users\222126\Source\Repos\11.10.23-tashuzjaeva\alinamagazintehnica\alinamagazinteh\obj\Debug\Entities\PhotoUserControl.baml

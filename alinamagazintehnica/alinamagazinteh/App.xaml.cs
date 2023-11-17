@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using alinamagazinteh.Entities.PartialClass;
 
 namespace alinamagazinteh
 {
@@ -14,7 +15,9 @@ namespace alinamagazinteh
     /// </summary>
     public partial class App : Application
     {
-        public static magazintehnikiEntities1 db = new magazintehnikiEntities1();
+        public static magazintehnikiEntities2 db = new magazintehnikiEntities2();
         public static bool isAdmin = false;
+        public static MainWindow mainWindow;
+        public static pages.AddReadact servicePage;
     }
 }

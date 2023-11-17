@@ -32,12 +32,14 @@ namespace alinamagazinteh
                 var fullPath = path + item.Image.Trim();
                 var imageByte = File.ReadAllBytes(fullPath);
                 item.MainImage = imageByte;
+                OffAdminBtn.Visibility = Visibility.Collapsed;
 
 
                 App.db.SaveChanges();
                 Entities.PartialClass.Navigation.mainWindow = this;
                 Entities.PartialClass.Navigation.NextPage(new Entities.PartialClass.Navigation.PageComponent(new pages.Page1(), "Список услуг"));
                 frams.Navigate(new pages.Catalog());
+
 
             }
         }
@@ -47,6 +49,9 @@ namespace alinamagazinteh
             if (PasswordPb.Password == "0000")
             {
                 App.isAdmin = true;
+                OffAdminBtn.Visibility = Visibility.Visible;
+                PasswordPb.Visibility = Visibility.Collapsed;
+                OnAdminBtn.Visibility = Visibility.Collapsed;
                 Entities.PartialClass.Navigation.NextPage(new Entities.PartialClass.Navigation.PageComponent(new pages.Page1(), "Услуги админа"));
                 PasswordPb.Clear();
                 Entities.PartialClass.Navigation.ClearHistory();
@@ -61,6 +66,9 @@ namespace alinamagazinteh
         private void OffAdminBtn_Click_1(object sender, RoutedEventArgs e)
         {
             App.isAdmin = false;
+            OffAdminBtn.Visibility = Visibility.Collapsed;
+            PasswordPb.Visibility = Visibility.Visible;
+            OnAdminBtn.Visibility = Visibility.Visible;
             Entities.PartialClass.Navigation.NextPage(new Entities.PartialClass.Navigation.PageComponent(new pages.Page1(), "Список услуг"));
             Entities.PartialClass.Navigation.ClearHistory();
         }

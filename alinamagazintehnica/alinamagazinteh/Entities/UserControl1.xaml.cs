@@ -27,6 +27,7 @@ namespace alinamagazinteh.Entities
         public UserControl1(Product _service)
         {
             InitializeComponent();
+            service = _service;
              if(App.isAdmin == false)
             {
                 DeleteBtn.Visibility = Visibility.Collapsed;
@@ -37,7 +38,7 @@ namespace alinamagazinteh.Entities
                 CreateBtn.Visibility = Visibility.Visible;
                 DeleteBtn.Visibility = Visibility.Visible;
             }
-            service = _service;
+            
             photo.Source = GetImageSourse(service.MainImage);
             NameTB.Text = service.Title;
             othovTb.Text = service.AVGFeddbk.ToString();
@@ -90,6 +91,19 @@ namespace alinamagazinteh.Entities
         private void CreateBtn_Click(object sender, RoutedEventArgs e)
         {
             Navigation.NextPage(new PageComponent(new pages.AddReadact(service), "Редактировать"));
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            foreach(ProductZakazUc productZakazUc in App.KorzinaWp.Children)
+            { 
+                if(productZakazUc.product == product)
+                {
+                    productZakazUc.KolvoTb.Text
+                }
+
+            }
+                    
         }
     }
 }
